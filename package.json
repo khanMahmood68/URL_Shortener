@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "The goal is to create a RESTfull API for a URL shortener service, allowing users to transform long URLs into concise version",
   "main": "index.js",
-  "engines": {
-    "node": "18.17.1"
-  },
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
