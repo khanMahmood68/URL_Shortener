@@ -1,0 +1,130 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "description": "API for URL Shortener",
+    "title": "URL Shortener"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    }
+  },
+
+  "paths": {
+    
+    "/shorten": {
+      "post": {
+        "tags": ["Post URL"],
+        "summary": "Post URL",
+        "description": "User will post URL and unique short URL will created add both added in Database",
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "originalUrl": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/user/signup": {
+        "post": {
+          "tags": ["Users Signup"],
+          "summary": "Signup",
+          "description": "User Signup",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                        "type": "string"
+                      },
+                    "email": {
+                      "type": "string",
+                      "unique":true
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+  
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Incorrect Credentials"
+            }
+          }
+        }
+      },   
+    "/api/user/signin": {
+      "post": {
+        "tags": ["Users Signin"],
+        "summary": "Login",
+        "description": "User login to get token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect Credentials"
+          }
+        }
+      }
+    }
+  }
+}
