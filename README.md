@@ -30,6 +30,8 @@ npm start
 # Security Considerations
 - JWT authentiaction is used for the authentication
 
+# API Documentaion 
+-`/api-docs`:For getting api document
 
 ## Installation
 
