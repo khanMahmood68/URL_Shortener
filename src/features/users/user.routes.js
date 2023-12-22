@@ -1,13 +1,24 @@
 import express from "express";
 import UserController from "./user.controller.js";
-import jwtAuth from "../../middleware/jwt.middleware.js";
 
 const userRouter = express.Router();
 
+
+// Create an instance of the UserController
 const userController = new UserController();
 
-userRouter.get("/", jwtAuth, userController.getAllUser);
-userRouter.post("/signup", userController.signUp);
-userRouter.post("/signin", userController.signIn);
+// Route for user signup
+userRouter.post("/signup", (req, res) => {
+
+    // Call the signUp method from UserController to handle the signup logic
+    userController.signUp(req, res);
+  });
+
+// Route for user signin
+userRouter.post("/signin",  (req, res) => {
+
+    // Call the signIn method from UserController to handle the signin logic
+    userController.signIn(req, res);
+  });
 
 export default userRouter;
